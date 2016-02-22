@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<!--react kernel library-->
+    <script src="../build/react.js"></script>
+	<!--provides the features relative to DOM-->
+    <script src="../build/react-dom.js"></script>
+	<!--transform JSX into javascript, when go to production, better to make this step at server side-->
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      /**
+	  Using compoenent propTypes to setup the validation rule
+	  **/
+	  var MyTitle = React.createClass({
+	    propTypes:{
+		  title: React.PropTypes.string.isRequired
+		},
+		
+		/**This method returns the deafult value for component properties**/
+	    getDefaultProps : function () {
+		  return {
+			title : 'Hello World'
+		  };
+		},		
+		
+		render: function(){
+		  return <h1> {this.props.title} </h1>
+		}
+	  }
+	  );
+	  
+	  var data = '123';
+	  
+	  ReactDOM.render(
+	    <MyTitle/>,
+		document.getElementById('example')
+	  );
+    </script>
+  </body>
+</html>

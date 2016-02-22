@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<!--react kernel library-->
+    <script src="../build/react.js"></script>
+	<!--provides the features relative to DOM-->
+    <script src="../build/react-dom.js"></script>
+	<!--transform JSX into javascript, when go to production, better to make this step at server side-->
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      /**
+	  Using JSX, you can mix the JavaScript and HTML
+	  The JavaScript block is wrapped by the {}
+	  Also the variable in the JSX is using {}
+	  **/
+	  var names = ['Alice', 'Emily', 'Kate'];
+	  
+	  ReactDOM.render(
+		<div>
+		{
+		    names.map(function(name){
+				return <div>Hello, {name}!</div>
+			})
+		}
+		</div>,
+		document.getElementById('example')
+	  );
+    </script>
+  </body>
+</html>

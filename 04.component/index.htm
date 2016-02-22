@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<!--react kernel library-->
+    <script src="../build/react.js"></script>
+	<!--provides the features relative to DOM-->
+    <script src="../build/react-dom.js"></script>
+	<!--transform JSX into javascript, when go to production, better to make this step at server side-->
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      /**
+	  Using React.createClass to create the component
+	  1) Component should have a render function to reder the HTML
+	  2) Compoenent can access the attributes associated to it by this.props.***
+	  3) The component name should be first letter capitialized
+	  4) The component can only have one top level HTML tag, you can't put the silbling HTML tags
+	  5) To put the attribute for component, something need to be careful
+	     5.1) class should be changed to className
+		 5.2) for should be changed to htmlFor
+	  and Then in JSX, you can refer to compoenent by using tag
+	  **/
+	  var HelloMessage = React.createClass({
+		render: function(){
+			return <h1>Hello {this.props.name}</h1>;
+		}
+	  });
+	  
+	  ReactDOM.render(
+		<HelloMessage name="John"/>,
+		document.getElementById('example')
+	  );
+    </script>
+  </body>
+</html>

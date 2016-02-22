@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<!--react kernel library-->
+    <script src="../build/react.js"></script>
+	<!--provides the features relative to DOM-->
+    <script src="../build/react-dom.js"></script>
+	<!--transform JSX into javascript, when go to production, better to make this step at server side-->
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      /**
+	  component lifecycle has three stages
+	  1) Mounting Already insert into the real DOM tree
+	  2) Updating Is re-drawing
+	  3) Unmounting Already remove from the real DOM tree
+	  
+	  For these three lifecycle, has 5 event method you can monitor
+	  componentWillMount()
+	  componentDidMount()
+	  componentWillUpdate(object nextProps, object nextState)
+	  componentDidUpdate(object prevProps, object prevState)
+	  componentWillUnmount()
+	  
+	  And two more special events
+	  componentWillReceiveProps(object nextProps)
+	  shouldComponentUpdate(object nextProps, object nextState)
+	  
+	  style property is a object, need to write in the way style={{opacity: this.state.opacity}}
+	  **/
+	  var Hello = React.createClass({
+		getInitialState: function(){
+			return {
+				opacity: 1.0
+			};
+		},
+		
+		componentDidMount: function(){
+			this.timer = setInterval(function(){
+				var opacity = this.state.opacity;
+				opacity -= 0.05;
+				if (opacity < 0.1){
+					opacity = 1.0;
+				}
+				this.setState({
+					opacity: opacity
+				});
+			}.bind(this), 100);
+		},
+		
+		render: function(){
+			return(
+				<div style={{opacity: this.state.opacity}}>
+					Hello {this.props.name}
+				</div>
+			);
+		}
+	  });
+	  
+	  ReactDOM.render(
+		<Hello name="world"/>,
+		document.body
+	  );
+    </script>
+  </body>
+</html>

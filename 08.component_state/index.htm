@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<!--react kernel library-->
+    <script src="../build/react.js"></script>
+	<!--provides the features relative to DOM-->
+    <script src="../build/react-dom.js"></script>
+	<!--transform JSX into javascript, when go to production, better to make this step at server side-->
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+	  /**
+	  the compoenent state is saved in this.state
+	  using getInitialState function to initialize the component state
+	  **/
+      var LikeButton = React.createClass({
+	    getInitialState: function(){
+		  return {liked: false};
+		},
+		
+		handleClick: function(event){
+		  this.setState({liked: !this.state.liked});
+		},
+		
+		render: function(){
+		  var text = this.state.liked ? 'like' : 'haven\'t liked';
+		  return(
+		    <p onClick={this.handleClick}>
+			  You {text} this. Click to toggle.
+			</p>
+		  );
+		}
+	  });
+	  
+	  ReactDOM.render(
+	    <LikeButton/>,
+		document.getElementById('example')
+	  );
+    </script>
+  </body>
+</html>
